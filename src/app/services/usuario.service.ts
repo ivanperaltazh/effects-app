@@ -12,12 +12,21 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) { }
 
-  getUser() {
+  getUsers() {
+ //  return this.http.get(`${ this.url }/users?per_page=6&delay=1`)  // &delay causa retrazo de 1 segundo para poder mirar el icono de espera cargando
    return this.http.get(`${ this.url }/users?per_page=6`)
           .pipe(
              map( resp =>  resp['data'])
           );
   }
+
+
+  getUser(id: string) {
+      return this.http.get(`${ this.url }/users/${id}`)
+             .pipe(
+                map( resp =>  resp['data'])
+             );
+     }
 
 
 }
